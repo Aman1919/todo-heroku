@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+        margin: 0;
+    }
+body{
+    display: grid;
+    place-content: center;
+    height: 100vh;
+    background: linear-gradient(90deg,#a683E3,rgb(179, 49, 179)) no-repeat center center/cover;
+    font-family: sans-serif;
+}
+form input{
+    padding: .5rem 2rem;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 0.35rem rgba(0, 0, 0, 0.488);
+margin: 1rem 1rem 2rem 0;
+}
+button{
+    font-size: 1.2rem;
+    padding: .2rem .5rem;
+    border-radius: 8px;
+    border: 2px solid white;
+    color: white;
+    background-color: rgb(234, 196, 124);
+    
+}
+button:active,
+button:hover{
+border: 2px solid rgb(234, 196, 124);
+background-color: rgba(255, 255, 255, 0.425);
+color: rgb(232, 187, 104);
+}
+
+div.con{
+ background-color:rgba(238, 170, 238, 0.516); 
+ padding: 3rem 1.8rem;  
+ border-radius: 20px;
+}
+.item{
+    display: flex;
+    background-color: aliceblue;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+    padding:.5rem 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.237);
+}
+.item div{
+    display: inline;
+}
+p{
+    text-transform: capitalize;
+    color: white;
+text-align: right;
+margin: .5rem;
+display: inline;
+}
+.box p{
+    color: black;
+}
+h1{
+    color: white;
+}
+input:checked+p{
+    text-decoration: line-through;
+}
+button.delete{
+    background-color: crimson;
+    font-size: 0.8rem;
+}
+button.delete:active,
+button.delete:hover{
+border: 2px solid crimson;
+background-color: rgba(0, 0, 0, 0.175);
+color: crimson;
+}
+</style>
+<body>
+    <div class="con">
+<h1> <%=title%> </h1>
+<p><%=y%></p>
+<form action="/" method="POST" class="inptForm">
+    <input type="text" name="newitem" autocomplete="off" required>
+    <button type="submit" name="li" value="<%=title%>">Add</button>
+</form>
+
+<div class="box">
+
+    <% newlist.forEach(function(i){%>
+        <form action="/delete" method="post">    
+   <div class="item"> 
+    <div>
+    <input type="checkbox">
+    <p><%=i.name%></p>
+    </div>
+    <button name="del" type="submit" value="<%=i._id%>" class="delete">Delete</button>
+<input type="hidden" name="listN" value="<%=title%>">  
+</div>
+</form>
+    <%})%>
+</div>
+
+</div>
+</body>
+</html>
